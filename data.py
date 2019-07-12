@@ -14,7 +14,7 @@ time.sleep(5)
 html = driver.page_source
 driver.close()
 
-soup = BeautifulSoup(html, 'html.parser')
+soup = BeautifulSoup(html.encode("utf-8"), 'html.parser')
 
 #print(soup.prettify())
 event_data = soup.find_all(class_="eelistevent-data")
@@ -26,6 +26,8 @@ event_time = [event.find(class_="eelisttime").get_text() for event in event_data
 event_group = [event.find(class_="eelistgroup").get_text() for event in event_data]
 event_type = [event.find(class_="eelisttags").get_text() for event in event_data]
 event_descr = [event.find(class_="eelistdesc").get_text() for event in event_data]
+event_register = [True if event.find(class_="eventRegButton") != None else False  for event in event_data]
+
 """
 print (event_change_message)
 print (event_title)
@@ -43,15 +45,21 @@ event_table = pd.DataFrame(
         'event_time': event_time,
         'event_group': event_group,
         'event_type': event_type,
-        'event_descr': event_descr
+        'event_descr': event_descr,
+        'event_register': event_register
     }
 )
 
 #print(event_table)
 
+event_table.to_csv("niles_maine_library.csv")
+print("csv file has been created!")
+
+"""
 event_table = event_table.to_json()
 file = open("niles_maine_library.json", "w")
 json.dump(event_table, file)
+print("json file has been created!")
 
 file.close()
-#event_table.to_csv('niles_maine_library.csv')
+"""
