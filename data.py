@@ -1,6 +1,7 @@
 from selenium import webdriver
 import os
-import time
+from datetime import datetime
+import time as t
 from bs4 import BeautifulSoup
 import pandas as pd
 import json
@@ -10,14 +11,15 @@ chromedriver = "C:/Users/ict7292/webdrivers/chromedriver.exe"  #chromedriver sho
 os.environ["webdriver.chrome.driver"] = chromedriver
 driver = webdriver.Chrome(chromedriver)
 driver.get('https://nmdl.libnet.info/events?r=thismonth')
-time.sleep(5)
+t.sleep(5)
 html = driver.page_source
-driver.close()
+driver.quit()
 
 soup = BeautifulSoup(html.encode("utf-8"), 'html.parser')
 
 #print(soup.prettify())
 event_data = soup.find_all(class_="eelistevent-data")
+year_today = datetime.now().year
 
 event_change_message = ['' if event.find(class_="eelist-changed-message") == None else event.find(class_="eelist-changed-message").get_text() for event in event_data]
 event_title = [event.find(class_="eelisttitle").get_text() for event in event_data]
@@ -28,16 +30,15 @@ event_type = [event.find(class_="eelisttags").get_text() for event in event_data
 event_descr = [event.find(class_="eelistdesc").get_text() for event in event_data]
 event_register = [True if event.find(class_="eventRegButton") != None else False  for event in event_data]
 
-"""
-print (event_change_message)
-print (event_title)
-print (event_location)
-print (event_time)
-print (event_group)
-print (event_type)
-print (event_descr)
-"""
-event_table = pd.DataFrame(
+# print (event_change_message)
+# print (event_title)
+# print (event_location)
+# print (event_time)
+# print (event_group)
+# print (event_type)
+# print (event_descr)
+
+lib = pd.DataFrame(
     {
         'event_change_message': event_change_message,
         'event_title': event_title,
@@ -50,16 +51,15 @@ event_table = pd.DataFrame(
     }
 )
 
-#print(event_table)
+#print(lib)
 
-event_table.to_csv("niles_maine_library.csv")
+lib.to_csv("niles_maine_library.csv")
 print("csv file has been created!")
 
-"""
-event_table = event_table.to_json()
-file = open("niles_maine_library.json", "w")
-json.dump(event_table, file)
-print("json file has been created!")
 
-file.close()
-"""
+# lib = lib.to_json()
+# file = open("niles_maine_library.json", "w")
+# json.dump(lib, file)
+# print("json file has been created!")
+#
+# file.close()
