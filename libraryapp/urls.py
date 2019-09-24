@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .libsearch import views
+from libsearch.views import EventListView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('/', )
+    path(r'^admin/', admin.site.urls),
+    path(r'^$', EventListView.as_view())
 ]

@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'libsearch'
+    'libsearch',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +122,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# Selenium settings
+# local
+SELENIUM_DRIVER = '../libsearch/chromedriver.exe'
