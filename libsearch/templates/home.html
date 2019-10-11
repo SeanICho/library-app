@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  {% for event in events%}
+    {% if event.change_message == "" and event.group == "Kids" %}
+      <div class="event_name">
+        <a href="{% url 'event_detail' event.id %}">
+          <h3>{{ event.title|capfirst }}</h3>
+        </a>
+        <p>Location: {{ event.location}} </p>
+        <p>Type: {{ event.type}} </p>
+        <p>Start Time: {{ event.start_time|date:"M d P l"}}
+        <p>End Time: {{ event.end_time|date:"M d P l"}}
+        <% if event.register == True %>
+          <p>Regiration required!</p>
+        <% endif %>
+        <p class="hidden">{{ event.description }}</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}
