@@ -56,18 +56,20 @@ def scrape(url, clss):
     print("{}_library.csv file has been created!".format(url[8:12]))
 
 
-nmdl_class = {
-    'event_data': "eelistevent-data",
-    'event_change_message': "eelist-changed-message",
-    'event_title':"eelisttitle",
-    'event_location':"eelocation",
-    'event_time':"eelisttime",
-    'event_group':"eelistgroup",
-    'event_type':"eelisttags",
-    'event_descr':"eelistdesc",
-    'event_register':"eventRegButton",
-}
-scrape('https://nmdl.libnet.info/events?r=thismonth', nmdl_class)
+# nmdl_class = {
+#     'event_data': "eelistevent-data",
+#     'event_change_message': "eelist-changed-message",
+#     'event_title':"eelisttitle",
+#     'event_location':"eelocation",
+#     'event_time':"eelisttime",
+#     'event_group':"eelistgroup",
+#     'event_type':"eelisttags",
+#     'event_descr':"eelistdesc",
+#     'event_register':"eventRegButton",
+# }
+# scrape('https://nmdl.libnet.info/events?r=thismonth', nmdl_class)
+
+
 # lib = lib.to_json()
 # file = open("niles_maine_library.json", "w")
 # json.dump(lib, file)
