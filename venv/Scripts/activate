@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="$(if [ "$OSTYPE" "==" "cygwin" ]; then cygpath -u 'C:\Users\ict7292\Desktop\django\prj\libraryapp\venv'; else echo '/C/Users/ict7292/Desktop/django/prj/libraryapp/venv'; fi;)"
+VIRTUAL_ENV="$(if [ "$OSTYPE" "==" "cygwin" ]; then cygpath -u 'C:\Users\ict7292\Desktop\django\libraryapp\venv'; else echo '/C/Users/ict7292/Desktop/django/libraryapp/venv'; fi;)"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

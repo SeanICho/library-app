@@ -1,1 +1,1 @@
-c:\users\ict7292\appdata\local\programs\python\python37-32
+C:\Users\ict7292\AppData\Local\Programs\Python\Python37-32
